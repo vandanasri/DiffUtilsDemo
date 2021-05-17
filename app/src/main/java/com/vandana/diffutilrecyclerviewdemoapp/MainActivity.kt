@@ -1,8 +1,9 @@
 package com.vandana.diffutilrecyclerviewdemoapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        adapter.ItemClickListener = { position, name ->
+        adapter.itemClickListener = { _, name ->
             show(name)
         }
         adapter.updateList(places)
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager= GridLayoutManager(this,2)
         recyclerView.setHasFixedSize(true)
 
-        adapter.ItemClickListener = { position, name ->
+        adapter.itemClickListener = { _, name ->
             show( name)
         }
         adapter.updateList(sports)
@@ -73,13 +74,13 @@ class MainActivity : AppCompatActivity() {
 
         btnOne.setOnClickListener {
             useNotifyDataSet()
-            btnOne.setBackgroundColor(resources.getColor(R.color.purple_200))
-            btnTwo.setBackgroundColor(resources.getColor(R.color.purple_500))
+            btnOne.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_200))
+            btnTwo.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_500))
         }
         btnTwo.setOnClickListener {
             useDiffUtil()
-            btnTwo.setBackgroundColor(resources.getColor(R.color.purple_200))
-            btnOne.setBackgroundColor(resources.getColor(R.color.purple_500))
+            btnTwo.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_200))
+            btnOne.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_500))
 
         }
     }

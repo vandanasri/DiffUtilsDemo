@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.item_recyclerview.view.*
  * view holder pattern. Updates from the data source to the recyclerview will occur through
  * notifyDatasetChanged
  */
-class MyNotifyDataSetAdapter(var places: List<String>):
+class MyNotifyDataSetAdapter(private var places: List<String>):
          RecyclerView.Adapter<MyNotifyDataSetAdapter.MyViewHolder>() {
 
-    var ItemClickListener: ((position: Int, name: String) -> Unit)? = null
+    var itemClickListener: ((position: Int, name: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewHolderType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
@@ -35,7 +35,7 @@ class MyNotifyDataSetAdapter(var places: List<String>):
             itemView.itemText.text = places
 
             itemView.setOnClickListener {
-                ItemClickListener?.invoke(position, places)
+                itemClickListener?.invoke(position, places)
             }
         }
     }

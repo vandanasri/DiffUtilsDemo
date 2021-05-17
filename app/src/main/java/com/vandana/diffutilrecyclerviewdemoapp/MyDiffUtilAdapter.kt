@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.item_recyclerview.view.*
  * This is the same RecyclerView but using DiffUtil instead of
  * notifyDataSetChanged() to animate changes
  */
-class MyDiffUtilAdapter(var sports: List<String>):
+class MyDiffUtilAdapter(private var sports: List<String>):
          RecyclerView.Adapter<MyDiffUtilAdapter.MyViewHolder>() {
 
-    var ItemClickListener: ((position: Int, name: String) -> Unit)? = null
+    var itemClickListener: ((position: Int, name: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewHolderType: Int):
      MyViewHolder = MyViewHolder(LayoutInflater.from(parent.context).inflate(
@@ -29,7 +29,7 @@ class MyDiffUtilAdapter(var sports: List<String>):
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(sports: String, position: Int) {
             itemView.itemText.text = sports
-            itemView.setOnClickListener { ItemClickListener?.invoke(position, sports) }
+            itemView.setOnClickListener { itemClickListener?.invoke(position, sports) }
         }
     }
 
