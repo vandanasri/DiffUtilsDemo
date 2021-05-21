@@ -36,13 +36,13 @@ class MyDiffUtilAdapter(private var sports: List<String>):
     /**
      *  THIS IS THE ONLY DIFFERENCE BETWEEN the regular MyNotifyDataSetAdapter
      */
-    fun updateList(newGalaxies: List<String>) {
+    fun updateList(newSports: List<String>) {
 
-        val diffCallback = MyDiffCallback(this.sports, newGalaxies)
+        val diffCallback = MyDiffCallback(this.sports, newSports)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         diffResult.dispatchUpdatesTo(this)
 
-        this.sports = newGalaxies
+        this.sports = newSports
     }
 }
 //end
